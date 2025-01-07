@@ -52,17 +52,94 @@
       <h1>Products</h1>
       <div class="row" id="product-list">
         <!-- Products will be dynamically inserted here -->
-        <div class="col-md-4">
-          <div class="card mb-4">
-              <img src="https://placehold.co/100" class="card-img-top" alt="Product 1">
-              <div class="card-body">
-                  <h5 class="card-title">Product 1</h5>
-                  <p class="card-text">$10.99</p>
-                  <p class="card-text">Description for product 1</p>
-                  <button class="btn btn-primary add-to-cart" data-id="1">Add to Cart</button>
-              </div>
+        
+
+      <div class="col-md-4">
+        <div class="card mb-4">
+            <img src="https://placehold.co/100" class="card-img-top" alt="Product 1">
+            <div class="card-body">
+                <h5 class="card-title">Product 1</h5>
+                <p class="card-text">$10.99</p>
+                <p class="card-text">Description for product 1</p>
+                <button class="btn btn-primary add-to-cart" data-id="1">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card mb-4">
+          <img src="https://placehold.co/100" class="card-img-top" alt="Product 1">
+          <div class="card-body">
+              <h5 class="card-title">Product 1</h5>
+              <p class="card-text">$10.99</p>
+              <p class="card-text">Description for product 1</p>
+              <button class="btn btn-primary add-to-cart" data-id="1">Add to Cart</button>
           </div>
       </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card mb-4">
+        <img src="https://placehold.co/100" class="card-img-top" alt="Product 1">
+        <div class="card-body">
+            <h5 class="card-title">Product 1</h5>
+            <p class="card-text">$10.99</p>
+            <p class="card-text">Description for product 1</p>
+            <button class="btn btn-primary add-to-cart" data-id="1">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card mb-4">
+      <img src="https://placehold.co/100" class="card-img-top" alt="Product 1">
+      <div class="card-body">
+          <h5 class="card-title">Product 1</h5>
+          <p class="card-text">$10.99</p>
+          <p class="card-text">Description for product 1</p>
+          <button class="btn btn-primary add-to-cart" data-id="1">Add to Cart</button>
+      </div>
+  </div>
+</div>
+
+
+
+<div class="col-md-4">
+  <div class="card mb-4">
+      <img src="https://placehold.co/100" class="card-img-top" alt="Product 1">
+      <div class="card-body">
+          <h5 class="card-title">Product 1</h5>
+          <p class="card-text">$10.99</p>
+          <p class="card-text">Description for product 1</p>
+          <button class="btn btn-primary add-to-cart" data-id="1">Add to Cart</button>
+      </div>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card mb-4">
+      <img src="https://placehold.co/100" class="card-img-top" alt="Product 1">
+      <div class="card-body">
+          <h5 class="card-title">Product 1</h5>
+          <p class="card-text">$10.99</p>
+          <p class="card-text">Description for product 1</p>
+          <button class="btn btn-primary add-to-cart" data-id="1">Add to Cart</button>
+      </div>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card mb-4">
+      <img src="https://placehold.co/100" class="card-img-top" alt="Product 1">
+      <div class="card-body">
+          <h5 class="card-title">Product 1</h5>
+          <p class="card-text">$10.99</p>
+          <p class="card-text">Description for product 1</p>
+          <button class="btn btn-primary add-to-cart" data-id="1">Add to Cart</button>
+      </div>
+  </div>
+</div>
+
       </div>
     </div>
 
@@ -76,8 +153,72 @@
     ></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        
+        //Gets targeted items
+        const productList = document.querySelector('#product-list')
+        //Creates empty array which can be used to be accessed later to be added to cart
+        let productsData = [];
+        //Used to build HTML for each product
+        let productHTML = ''
+        //Fecth method to pull in json file for data on each product
+        fetch('products.json')
+        //Return json method
+        .then(response => response.json())
+        .then(data => {
+          //Fetches data and puts into array which can then be for later uses
+          productsData = data.products;
+           data.products.forEach(product => {
+            productHTML += 
+            //MUST USE BACKTICKS "`"
+            `
+            <div class="col-md-4">
+             <div class="card mb-4">
+              <img src=${product.image}
+              class="card-img-top" 
+              alt="Product 1"
+              />
+               <div class="card-body">
+                <h5 class="card-title">${product.name}</h5>
+                <p class="card-text">${product.price.toString()}</p>
+                <p class="card-text">${product.description}</p>
+                <button class="btn btn-primary add-to-cart" data-id="1">Add to Cart</button>
+              </div>
+             </div>
+            </div>
+            `
+
+          
+            
+           });
+           productList.innerHTML = productHTML
         });
+        const cart = [];
+        function addToCart(event){
+          console.log(event.target.getAttribute(`data-id`));
+          const productId = event.target.getAttribute(`data-id`);
+          const product = productsData[product - 1]; //Use the global variable to find the product
+        }
+
+        let cartItem = {
+          name: product.name,
+        };
+        cart.push(cartItem);
+        console.log(cart)
+        renderCart();
+      }
+
+      function renderCart(){
+        const cartList = document.getElementById(`cart-list`)
+        let cartItem = ``;
+        cart.forEach(product) => {
+          cartItem += `<p>${product.name}<p>`;
+         });
+        cartList.innetHTML = cartItem;
+      }
+    });
+
+        
+
+
     </script>
   </body>
 </html>
