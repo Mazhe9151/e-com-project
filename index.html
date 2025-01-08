@@ -44,6 +44,10 @@
       <h2>Cart</h2>
       <div id="cart-list">
         <!-- Cart items will be dynamically inserted here -->
+        
+         <!-- End -->
+
+
       </div>
       <button class="btn btn-primary" id="checkout-button">Checkout</button>
     </div>
@@ -52,81 +56,6 @@
       <h1>Products</h1>
       <div class="row" id="product-list">
         <!-- Products will be dynamically inserted here -->
-        
-
-      <div class="col-md-4">
-        <div class="card mb-4">
-            <img src="https://placehold.co/100" class="card-img-top" alt="Product 1">
-            <div class="card-body">
-                <h5 class="card-title">Product 1</h5>
-                <p class="card-text">$10.99</p>
-                <p class="card-text">Description for product 1</p>
-                <button class="btn btn-primary add-to-cart" data-id="1">Add to Cart</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card mb-4">
-          <img src="https://placehold.co/100" class="card-img-top" alt="Product 1">
-          <div class="card-body">
-              <h5 class="card-title">Product 1</h5>
-              <p class="card-text">$10.99</p>
-              <p class="card-text">Description for product 1</p>
-              <button class="btn btn-primary add-to-cart" data-id="1">Add to Cart</button>
-          </div>
-      </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="card mb-4">
-        <img src="https://placehold.co/100" class="card-img-top" alt="Product 1">
-        <div class="card-body">
-            <h5 class="card-title">Product 1</h5>
-            <p class="card-text">$10.99</p>
-            <p class="card-text">Description for product 1</p>
-            <button class="btn btn-primary add-to-cart" data-id="1">Add to Cart</button>
-        </div>
-    </div>
-</div>
-
-<div class="col-md-4">
-  <div class="card mb-4">
-      <img src="https://placehold.co/100" class="card-img-top" alt="Product 1">
-      <div class="card-body">
-          <h5 class="card-title">Product 1</h5>
-          <p class="card-text">$10.99</p>
-          <p class="card-text">Description for product 1</p>
-          <button class="btn btn-primary add-to-cart" data-id="1">Add to Cart</button>
-      </div>
-  </div>
-</div>
-
-
-
-<div class="col-md-4">
-  <div class="card mb-4">
-      <img src="https://placehold.co/100" class="card-img-top" alt="Product 1">
-      <div class="card-body">
-          <h5 class="card-title">Product 1</h5>
-          <p class="card-text">$10.99</p>
-          <p class="card-text">Description for product 1</p>
-          <button class="btn btn-primary add-to-cart" data-id="1">Add to Cart</button>
-      </div>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="card mb-4">
-      <img src="https://placehold.co/100" class="card-img-top" alt="Product 1">
-      <div class="card-body">
-          <h5 class="card-title">Product 1</h5>
-          <p class="card-text">$10.99</p>
-          <p class="card-text">Description for product 1</p>
-          <button class="btn btn-primary add-to-cart" data-id="1">Add to Cart</button>
-      </div>
-  </div>
-</div>
 
 <div class="col-md-4">
   <div class="card mb-4">
@@ -152,7 +81,7 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
+      document.addEventListener('DOMContentLoaded', function () {
         //Gets targeted items
         const productList = document.querySelector('#product-list')
         //Creates empty array which can be used to be accessed later to be added to cart
@@ -180,7 +109,7 @@
                 <h5 class="card-title">${product.name}</h5>
                 <p class="card-text">${product.price.toString()}</p>
                 <p class="card-text">${product.description}</p>
-                <button class="btn btn-primary add-to-cart" data-id="1">Add to Cart</button>
+                <button class="btn btn-primary add-to-cart" data-id="${product.id}">Add to Cart</button>
               </div>
              </div>
             </div>
@@ -189,35 +118,62 @@
           
             
            });
-           productList.innerHTML = productHTML
+           productList.innerHTML = productHTML;
+           document.querySelectorAll('.add-to-cart').forEach
+           ((button) => {
+            button.addEventListener('click', addToCart);
+           });
         });
-        const cart = [];
-        function addToCart(event){
-          console.log(event.target.getAttribute(`data-id`));
-          const productId = event.target.getAttribute(`data-id`);
-          const product = productsData[product - 1]; //Use the global variable to find the product
-        }
 
-        let cartItem = {
-          name: product.name,
+        function addToCart(event){
+          console.log('click');
+        }
+      
+      //Setup cart array
+        const cart = [];
+
+        //Add cart product to cart as an object
+        function addToCart(event){
+          console.log('click');
+          const productId = event.target.getAttribute(`data-id`);
+          const product = productsData[productId - 1];
+        
+          let cartItem = {
+            name: product.name,
+            price: product.price,
         };
         cart.push(cartItem);
         console.log(cart)
         renderCart();
       }
-
+//Updates and displays current cart
       function renderCart(){
         const cartList = document.getElementById(`cart-list`)
-        let cartItem = ``;
-        cart.forEach(product) => {
-          cartItem += `<p>${product.name}<p>`;
+        let cartItem = '';
+        cart.forEach((product) => {
+          cartItem += `
+          <div class="cart-item">
+          <h5>${product.name}</h5>
+          <p>${product.price}</p>
+          <button class="btn btn-secondary increase-quantity" 
+          data-id="${product.id}">
+          +
+         </button>
+         <button class="btn btn-secondary decrease-quantity" 
+         data-id="${product.id}">
+          -
+         </button>
+         <button class="btn btn-danger remove-from-cart" data-id="${product.id}">
+          Remove
+         </button>
+         </div>
+          `;
          });
-        cartList.innetHTML = cartItem;
+        cartList.innerHTML = cartItem;
       }
     });
-
         
-
+    
 
     </script>
   </body>
