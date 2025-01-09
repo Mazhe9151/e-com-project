@@ -170,9 +170,25 @@
           `;
          });
         cartList.innerHTML = cartItem;
+        document.querySelectorAll('.remove-from-cart').forEach((button) => {
+          button.addEventListener('click', removeFromCart);
+        });
+      }
+      //remove item from cart 
+      function removeFromCart(event){
+        const productId = event.target.getAttribute('data-id');
+        cart.splice(productId - 1, 1);
+        renderCart();
       }
     });
-        
+    // function removeFromCart(event){
+    //     const productId = event.target.getAttribute('data-id');
+    //     const productIndex = cart.findIndex(
+    //       (product) => product.id == productId,
+    //   );
+    //     cart.splice(productIndex, 1);
+    //     renderCart();
+    //   }
     
 
     </script>
