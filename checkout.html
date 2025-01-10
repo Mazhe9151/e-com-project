@@ -176,7 +176,8 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        
+        const query = new URLSearchParams(window.location.search);
+        console.log(Array.from(query.entries()));
       });
     </script>
   </body>
