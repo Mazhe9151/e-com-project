@@ -140,6 +140,7 @@
           const product = productsData[productId - 1];
         
           let cartItem = {
+            id: product.id,
             name: product.name,
             price: product.price,
         };
@@ -156,7 +157,7 @@
           <div class="cart-item">
           <h5>${product.name}</h5>
           <p>${product.price}</p>
-          <input type="hidden" name="id" value="${product.id }">
+          <input type="hidden" name="id" value="${product.id}">
           <input type="hidden" name="name" value="${product.name}">
           <input type="hidden" name="price" value="${product.price}">
           <button class="btn btn-secondary increase-quantity" 
