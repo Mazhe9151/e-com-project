@@ -118,8 +118,9 @@
           const product = productsData[productId - 1];
         
           let cartItem = {
+            id: product.id,
             name: product.name,
-            price: product.price,
+            price: product.price
         };
         cart.push(cartItem);
         console.log(cart)

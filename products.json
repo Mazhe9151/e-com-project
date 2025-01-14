@@ -4,63 +4,63 @@
       "id": 1,
       "name": "Spaghetti",
       "description": "Ikea spaghetti and meatballs, freshly milked from Sweden",
-      "price": "$8.50",
+      "price": 8.99,
       "image": "https://www.ikea.com/images/swedish-meatballs-with-mashed-potato-and-mixed-vegetable-wit-d3826af6316b6d4007d316b7bfc2b734.jpg?f=s"
     },
     {
       "id": 2,
       "name": "Food from some country",
       "description": "Another food",
-      "price": "$1234.99",
+      "price": 1234.99,
       "image": "https://placehold.co/100"
     },
     {
       "id": 3,
       "name": "Food from some other different country",
       "description": "Some kind of food",
-      "price": "$15.99",
+      "price": 15.99,
       "image": "https://placehold.co/100"
     },
     {
       "id": 4,
       "name": "Food from another country",
       "description": "Food thingy",
-      "price": "$15.99",
+      "price": 15.99,
       "image": "https://placehold.co/100"
     },
     {
       "id": 5,
       "name": "Food from another another country",
       "description": "Description for product 3",
-      "price": "$15.99",
+      "price": 15.99,
       "image": "https://placehold.co/100"
     },
     {
       "id": 6,
       "name": "Apple device",
       "description": "Description for product 3",
-      "price": "$15.99",
+      "price": 15.99,
       "image": "https://placehold.co/100"
     },
     {
       "id": 7,
       "name": "Samsung device",
       "description": "Description for product 3",
-      "price": "$15.99",
+      "price": 15.99,
       "image": "https://placehold.co/100"
     },
     {
       "id": 8,
       "name": "Google device",
       "description": "Description for product 3",
-      "price": "$15.99",
+      "price": 15.99,
       "image": "https://placehold.co/100"
     },
     {
       "id": 9,
       "name": "Amazon",
       "description": "Buy Amazon",
-      "price": "$1,000,000,000,000",
+      "price": 1000000000000,
       "image": "https://placehold.co/100"
     }
   ]
