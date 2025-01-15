@@ -10,5 +10,17 @@
       "name": "Chill Gay",
       "email": "def@email.com",
       "password": 456
+    },
+    {
+      "id": 3,
+      "name": "Your mom",
+      "email": "yourmom69420@email.com",
+      "password": 420
+    },
+    {
+      "id": 4,
+      "name": "Your dad",
+      "email": "yourdad69420@email.com",
+      "password": 42069
     }
 ]

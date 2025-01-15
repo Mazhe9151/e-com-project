@@ -176,33 +176,32 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const query = new URLSearchParams(window.location.search);
-        console.log(Array.from(query.entries()));
-        const cart = Array.from(query.entries());
+        const urlParams = new URLSearchParams(window.location.search);
+        const cartSummary = document.getElementById('cart-summary');
+        //First collect all parameters into the arrays
+        const ids = urlParams.getAll('id');
+        const names = urlParams.getAll('name');
+        const prices = urlParams.getAll('price');
 
 
-        function renderCart(){
-          const cartList = document.getElementById('cart-summary');
-          let cartItem = '';
-          let totalAmount = 0;
-          console.log(totalAmount)
-          for(let [key, value] of cart){
-            console.log(key, value);
-            cartItem += `<p> ${value}</p>`;
-            const amount= parseFloat(value);
-            console.log(totalAmount)
-            if(key == "price"){
-              totalAmount += amount;
-              console.log(totalAmount)
-            }else{
-              console.warn(`invaild value for ${key}: ${value}`);  //warns the console.
-            }
-          }
-          cartList.innerHTML = cartItem;
-          cartList.innerHTML += `<p>Subtotal: $ ${totalAmount.toFixed(2)}</p>`;
-          console.log(totalAmount);
+        //Create cart items using a basic for loop
+        const cartItems = [];
+        let cartItem = ''
+        for(let i = 0; i < ids.length; i++){
+          cartItem += `
+          <div class = "cart-item">
+            <h5>${names[i]}</h5>
+            <p>$${parseFloat(prices[i]).toFixed(2)}</p>
+            <input type="hidden" name="id" value="${ids[i]}"/>
+            <input type="hidden" name="name" value="${names[i]}"/>
+            <input type="hidden" name="price" value="${prices[i]}"/>
+            </div>
+            `;
         }
-        renderCart();
+console.log(cartItem, cartItems)
+
+
+        cartSummary.innerHTML = cartItem;
       });
     </script>
   </body>
