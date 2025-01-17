@@ -52,16 +52,16 @@
     {
       "id": 8,
       "name": "Google device",
-      "description": "Description for product 3",
-      "price": 15.99,
-      "image": "https://placehold.co/100"
+      "description": "Google Nest Audio, fill your home with sound from all your Nest speakers and displays, broadcast messages, and make calls.",
+      "price": 99.99,
+      "image": "https://lh3.googleusercontent.com/69YteLDK6wf8bu2jS6Ra6occ8yurCDPfrKtU-lGD21J4TC7HX8rBZZfem7mKWmVpr59FkTXoP2wbl1bw5RN5nsHUl_nMm1BQB-OPSF9y8mwsJKcnL4o=w3840-v1-rw-e360"
     },
     {
       "id": 9,
       "name": "Amazon",
       "description": "Buy Amazon",
       "price": 1000000000000,
-      "image": "https://placehold.co/100"
+      "image": "https://openargs.com/wp-content/uploads/amazon-logo.png"
     }
   ]
 }

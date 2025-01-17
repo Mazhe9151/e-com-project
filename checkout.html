@@ -192,7 +192,10 @@
         //Create cart items using a basic for loop
         const cartItems = [];
         let cartItem = ''
+        let subTotal = 0;
         for(let i = 0; i < ids.length; i++){
+          const price = parseFloat(prices[i])
+          subTotal += price;
           cartItem += `
           <div class = "cart-item">
             <h5>${names[i]}</h5>
@@ -204,10 +207,19 @@
             `;
         }
 console.log(cartItem, cartItems)
-
+const taxRate = 0.15;
+const tax = subTotal * taxRate;
+const total = subTotal + tax;
 
         cartSummary.innerHTML = cartItem;
 
+        cartSummary.innerHTML += `
+        <div class="cart-summary">
+          <p>Subtotal: $${subTotal.toFixed(2)}</p>
+          <p>Tax: $${tax.toFixed(2)}</p>
+          <p>Total: $${total.toFixed(2)}</p>
+          </div>
+          `;
         document
         .querySelector('#checkout-form')
         .addEventListener('submit', submitCart)
@@ -219,6 +231,7 @@ console.log(cartItem, cartItems)
           .then(response => response.json())
           .then(data => {
               const email = document.getElementById('email').value;
+              const form = document.getElementById("checkout-form");
               console.log(email);
               const exists = data.some( user => user.email == email);
               console.log(exists);
