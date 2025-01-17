@@ -53,7 +53,60 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+       const urlParams = new URLSearchParams(window.location.search);
+       const order = document.getElementById('order-summary');
        
+
+       //Gets the parameters from URL
+       const ids = urlParams.getAll('id')
+       const names = urlParams.getAll('name');
+       const prices = urlParams.getAll('price');
+
+       //If the total comes out as NaN it will be fixed with an actual number
+       const total = prices.reduce((acc, price) => acc + (isNaN(price) ? 0 : price), 0);
+       const email = urlParams.get('email');
+       const address = urlParams.get('address');
+       const apartment = urlParams.get('apartment');
+       const city = urlParams.get('city');
+       const state = urlParams.get('state');
+       const zip = urlParams.get('zip');
+
+       //Displays the details of shipping address and total
+       order.innerHTML +=`
+       <div class="order-summary">
+        <p>Products: </p>
+        <ul>
+          `;
+
+          //Displays items purchased with its prices
+          for(let i = 0; i < ids.length; i++){
+            if(names[i] && prices[i]){
+              order.innerHTML +=`
+              <div class="cart-item">
+                <h5>${names[i]}</h5>
+                <p>Price: $${prices[i].toFixed(2)}</p>
+                <input type="hidden" name="id" value="${ids[i]}" />
+                <input type="hidden" name="names" value="${names[i]}" />
+                <input type="hidden" name="prices" value="${prices[i]}" />
+                </div>
+                `;
+            }
+          }
+
+          //Displays total
+          order.innerHTML +=`
+          <div class="total">
+            <h5>Total: $${total}>
+              </div>
+              `
+              order.innerHTML +=`
+              </ul>
+              <p>Shipping Address: <hr>
+                ${address} ${city} ${state} ${zip}</p>
+                <p>Email: <hr>
+                  ${email}</p>
+                  </div>
+                  `;
       });
     </script>
   </body>
