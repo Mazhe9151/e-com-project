@@ -60,7 +60,7 @@
        //Gets the parameters from URL
        const ids = urlParams.getAll('id')
        const names = urlParams.getAll('name');
-       const prices = urlParams.getAll('price');
+       const prices = urlParams.getAll('price').map(parseFloat);
 
        //If the total comes out as NaN it will be fixed with an actual number
        const total = prices.reduce((acc, price) => acc + (isNaN(price) ? 0 : price), 0);
